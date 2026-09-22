@@ -1,0 +1,6 @@
+{
+  "name": "El Maracaná Sports Bar & Grill",
+  "description": "Modern sports bar and live entertainment venue in Hidalgo, Texas featuring NFL RedZone, Liga MX, weekly specials, live music, and cold drinks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
