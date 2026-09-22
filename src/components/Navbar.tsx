@@ -58,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenReservation }) => {
           <a
             id="topbar-call-link"
             href={`tel:${VENUE_INFO.phoneRaw}`}
-            className="flex items-center gap-1 text-amber-400 hover:text-amber-300 font-semibold transition-colors"
+            className="hidden sm:flex items-center gap-1 text-amber-400 hover:text-amber-300 font-semibold transition-colors"
           >
             <Phone className="w-3 h-3" />
             <span>(956) 322-8814</span>
@@ -77,20 +77,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenReservation }) => {
 
       {/* Main navigation bar */}
       <nav className={`transition-all duration-300 ${scrolled ? 'bg-stone-950/95 shadow-lg border-b border-stone-800 backdrop-blur-md py-3' : 'bg-gradient-to-b from-stone-950/95 via-stone-950/80 to-transparent py-4'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
           {/* Brand Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-            <MaracanaLogo className="w-10 h-10 transition-transform group-hover:scale-105" />
-            <div>
+          <a href="#" className="flex items-center gap-2 sm:gap-3 group min-w-0">
+            <MaracanaLogo className="w-9 h-9 sm:w-10 sm:h-10 shrink-0 transition-transform group-hover:scale-105" />
+            <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <span className="font-display text-2xl font-black tracking-wider text-white uppercase">
+                <span className="font-display text-lg sm:text-2xl font-black tracking-wider text-white uppercase truncate">
                   El Maracaná
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded bg-stone-800 text-stone-300 border border-stone-700">
+                <span className="hidden sm:inline-block shrink-0 text-[10px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded bg-stone-800 text-stone-300 border border-stone-700">
                   Hidalgo, TX
                 </span>
               </div>
-              <p className="text-[10px] uppercase font-semibold tracking-widest text-stone-400 -mt-0.5">
+              <p className="hidden sm:block text-[10px] uppercase font-semibold tracking-widest text-stone-400 -mt-0.5 truncate">
                 Sports Bar & Grill
               </p>
             </div>
@@ -134,7 +134,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenReservation }) => {
           </div>
 
           {/* Mobile toggle */}
-          <div className="flex lg:hidden items-center gap-2">
+          <div className="flex lg:hidden items-center gap-2 shrink-0">
             <button
               id="nav-mobile-reserve-btn"
               onClick={onOpenReservation}

@@ -3,6 +3,7 @@ import { X, CheckCircle2, MapPin } from 'lucide-react';
 import { VENUE_INFO } from '../data/venueData';
 import { EventItem } from '../types';
 import { BookingPrefill } from './Hero';
+import { submitReservation } from '../lib/actions';
 
 interface TableReservationModalProps {
   isOpen: boolean;
@@ -44,13 +45,22 @@ export const TableReservationModal: React.FC<TableReservationModalProps> = ({
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [reservationCode, setReservationCode] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const code = `EM-${Math.floor(1000 + Math.random() * 9000)}`;
-    setReservationCode(code);
+    setSubmitError('');
+    setIsSubmitting(true);
+    const result = await submitReservation(formData);
+    setIsSubmitting(false);
+    if (!result.ok) {
+      setSubmitError(result.error);
+      return;
+    }
+    setReservationCode(result.data.confirmationCode);
     setIsSubmitted(true);
   };
 
@@ -181,13 +191,18 @@ export const TableReservationModal: React.FC<TableReservationModalProps> = ({
                 />
               </div>
 
+              {submitError && (
+                <p className="text-xs text-center text-red-600 font-semibold">{submitError}</p>
+              )}
+
               <div className="pt-2">
                 <button
                   id="confirm-reservation-submit-btn"
                   type="submit"
-                  className="w-full py-3 rounded-xl font-bold text-sm bg-stone-900 hover:bg-stone-800 text-white transition-colors cursor-pointer shadow-xs"
+                  disabled={isSubmitting}
+                  className="w-full py-3 rounded-xl font-bold text-sm bg-stone-900 hover:bg-stone-800 text-white transition-colors cursor-pointer shadow-xs disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Confirm Table Request
+                  {isSubmitting ? 'Submitting...' : 'Confirm Table Request'}
                 </button>
               </div>
 

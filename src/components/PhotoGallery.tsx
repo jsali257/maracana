@@ -23,8 +23,11 @@ const CATEGORY_LABEL: Record<GalleryCategory, string> = Object.fromEntries(
 // Number of masonry columns for the current screen width
 function useColumnCount() {
   const get = () => (window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1);
-  const [count, setCount] = useState(get);
+  // Starts at the desktop default so server and client render the same markup on
+  // first paint; useEffect corrects it to the real width right after mount.
+  const [count, setCount] = useState(3);
   useEffect(() => {
+    setCount(get());
     const onResize = () => setCount(get());
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);

@@ -2,15 +2,28 @@ import React, { useState } from 'react';
 import { VENUE_INFO } from '../data/venueData';
 import { Phone, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
 import { MaracanaLogo } from './MaracanaLogo';
+import { submitVipSignup } from '../lib/actions';
 
 export const Footer: React.FC = () => {
+  const [vipName, setVipName] = useState('');
   const [vipPhone, setVipPhone] = useState('');
   const [vipSuccess, setVipSuccess] = useState(false);
+  const [vipSubmitting, setVipSubmitting] = useState(false);
+  const [vipError, setVipError] = useState('');
 
-  const handleVipSubmit = (e: React.FormEvent) => {
+  const handleVipSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!vipPhone) return;
+    if (!vipName || !vipPhone) return;
+    setVipError('');
+    setVipSubmitting(true);
+    const result = await submitVipSignup({ name: vipName, phone: vipPhone });
+    setVipSubmitting(false);
+    if (!result.ok) {
+      setVipError(result.error);
+      return;
+    }
     setVipSuccess(true);
+    setVipName('');
     setVipPhone('');
     setTimeout(() => setVipSuccess(false), 5000);
   };
@@ -36,22 +49,38 @@ export const Footer: React.FC = () => {
 
             <div className="lg:col-span-6">
               {!vipSuccess ? (
-                <form onSubmit={handleVipSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md lg:ml-auto">
-                  <input
-                    type="tel"
-                    required
-                    placeholder="Enter phone number..."
-                    value={vipPhone}
-                    onChange={e => setVipPhone(e.target.value)}
-                    className="flex-1 px-4 py-2.5 rounded-xl bg-stone-900 border border-stone-700 text-white placeholder:text-stone-500 text-xs sm:text-sm focus:outline-none focus:border-stone-500"
-                  />
+                <form onSubmit={handleVipSubmit} className="flex flex-col gap-2 max-w-md lg:ml-auto">
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <input
+                      type="text"
+                      required
+                      placeholder="Your name..."
+                      value={vipName}
+                      onChange={e => setVipName(e.target.value)}
+                      className="flex-1 px-4 py-2.5 rounded-xl bg-stone-900 border border-stone-700 text-white placeholder:text-stone-500 text-xs sm:text-sm focus:outline-none focus:border-stone-500"
+                    />
+                    <input
+                      type="tel"
+                      required
+                      placeholder="Phone number..."
+                      value={vipPhone}
+                      onChange={e => setVipPhone(e.target.value)}
+                      className="flex-1 px-4 py-2.5 rounded-xl bg-stone-900 border border-stone-700 text-white placeholder:text-stone-500 text-xs sm:text-sm focus:outline-none focus:border-stone-500"
+                    />
+                  </div>
+                  {vipError && <p className="text-xs text-red-400 font-semibold">{vipError}</p>}
                   <button
                     type="submit"
-                    className="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-amber-500 hover:bg-amber-400 text-stone-950 shadow-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer shrink-0"
+                    disabled={vipSubmitting}
+                    className="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-amber-500 hover:bg-amber-400 text-stone-950 shadow-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer shrink-0 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <span>Join Club</span>
+                    <span>{vipSubmitting ? 'Joining...' : 'Join Club'}</span>
                     <Send className="w-3.5 h-3.5" />
                   </button>
+                  <p className="text-[10px] text-stone-500 leading-relaxed">
+                    By joining you agree to receive recurring automated marketing texts from El
+                    Maracaná. Msg &amp; data rates may apply. Reply STOP to cancel.
+                  </p>
                 </form>
               ) : (
                 <div className="p-3.5 rounded-xl bg-emerald-950/80 border border-emerald-600 text-emerald-300 text-xs sm:text-sm flex items-center gap-2 max-w-md lg:ml-auto">

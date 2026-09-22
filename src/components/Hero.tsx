@@ -65,10 +65,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenReservation }) => {
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
         
         {/* Simple venue badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-stone-900/90 border border-stone-800 text-xs font-semibold text-stone-300">
-          <span className="w-2 h-2 rounded-full bg-emerald-400" />
-          <span className="uppercase tracking-widest text-stone-200">3110 S. Jackson Rd. • Hidalgo, TX</span>
-          <span className="text-stone-600">•</span>
+        <div className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 max-w-full px-4 py-1.5 rounded-full bg-stone-900/90 border border-stone-800 text-xs font-semibold text-stone-300">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
+          <span className="hidden sm:inline uppercase tracking-widest text-stone-200">3110 S. Jackson Rd. • Hidalgo, TX</span>
+          <span className="hidden sm:inline text-stone-600">•</span>
           <span className="text-amber-400 font-mono">{status.statusText}</span>
         </div>
 

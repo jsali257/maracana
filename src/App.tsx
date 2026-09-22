@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { SportsLogosBar } from './components/SportsLogosBar';
@@ -7,6 +9,7 @@ import { MenuSection } from './components/MenuSection';
 import { PhotoGallery } from './components/PhotoGallery';
 import { HoursAndLocation } from './components/HoursAndLocation';
 import { TableReservationModal } from './components/TableReservationModal';
+import { VipClubPopup } from './components/VipClubPopup';
 import { Footer } from './components/Footer';
 import { BackToTop } from './components/BackToTop';
 import { EventItem } from './types';
@@ -38,6 +41,27 @@ export default function App() {
     setPrefilledEvent(null);
     setPrefilledBookingDetails(null);
   };
+
+  const [isVipOpen, setIsVipOpen] = useState(false);
+
+  useEffect(() => {
+    // A direct link (e.g. shared on social media) always opens the popup
+    // immediately, bypassing the delay and any past dismissal.
+    if (new URLSearchParams(window.location.search).get('vip') === '1') {
+      setIsVipOpen(true);
+      return;
+    }
+
+    try {
+      if (localStorage.getItem('vip-popup-joined')) return;
+      const dismissedUntil = Number(localStorage.getItem('vip-popup-dismissed-until') || 0);
+      if (dismissedUntil && Date.now() < dismissedUntil) return;
+    } catch {
+      // localStorage unavailable — fall through and show the popup anyway
+    }
+    const timer = setTimeout(() => setIsVipOpen(true), 8000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="min-h-screen bg-stone-50 text-stone-900 font-sans selection:bg-amber-500 selection:text-stone-950 flex flex-col pb-16 sm:pb-0">
@@ -79,6 +103,9 @@ export default function App() {
         prefilledEvent={prefilledEvent}
         prefilledDetails={prefilledBookingDetails}
       />
+
+      {/* VIP Text Club Popup */}
+      <VipClubPopup isOpen={isVipOpen} onClose={() => setIsVipOpen(false)} />
 
       {/* Back to Top */}
       <BackToTop />
