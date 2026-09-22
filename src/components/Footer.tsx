@@ -142,7 +142,7 @@ export const Footer: React.FC = () => {
               <li><strong className="text-white">Thursday:</strong> 50% Off Apps + DJ Karaoke</li>
               <li><strong className="text-white">Friday:</strong> Live Banda & Norteño</li>
               <li><strong className="text-white">Saturday:</strong> Liga MX Matchdays</li>
-              <li><strong className="text-white">Sunday:</strong> NFL RedZone & Football</li>
+              <li><strong className="text-white">Sunday:</strong> NFL RedZone, Kids Eat Free w/ Steak & $24 Beer Towers</li>
             </ul>
           </div>
 

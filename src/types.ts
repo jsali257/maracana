@@ -13,6 +13,8 @@ export interface WeeklySpecial {
   entertainment?: string;
   highlightColor: 'green' | 'amber' | 'blue' | 'red' | 'purple';
   bannerImage: string;
+  // 'contain' for transparent/cutout graphics that shouldn't be cropped; defaults to 'cover'
+  bannerImageFit?: 'cover' | 'contain';
 }
 
 export type EventCategory = 'all' | 'nfl' | 'soccer' | 'live-music' | 'karaoke' | 'combat';

@@ -11,6 +11,7 @@ export const VENUE_INFO = {
   phone: "(956) 322-8814",
   phoneRaw: "9563228814",
   googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=3110+S+Jackson+Rd+Hidalgo+TX",
+  doordashUrl: "https://www.doordash.com/store/el-maracana-bar-&-grill-hidalgo-47328762/112814968/",
   hours: [
     { days: "Monday – Thursday", time: "11:00 AM – 12:00 AM" },
     { days: "Friday – Saturday", time: "11:00 AM – 2:00 AM" },
@@ -41,7 +42,7 @@ export const WEEKLY_SPECIALS: WeeklySpecial[] = [
     ],
     entertainment: "Monday Night Football broadcast live with full audio across all stadium screens.",
     highlightColor: "amber",
-    bannerImage: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=80"
+    bannerImage: "/specialsmusic/burgermonday-optimized.jpg"
   },
   {
     day: "Tuesday",
@@ -55,7 +56,7 @@ export const WEEKLY_SPECIALS: WeeklySpecial[] = [
     ],
     entertainment: "Live sports broadcasts, Champions League & international soccer replays.",
     highlightColor: "green",
-    bannerImage: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=1000&q=80"
+    bannerImage: "/specialsmusic/tacotuesdays-optimized.jpg"
   },
   {
     day: "Wednesday",
@@ -69,7 +70,7 @@ export const WEEKLY_SPECIALS: WeeklySpecial[] = [
     ],
     entertainment: "NBA, midweek soccer matchups, and boxing preview watch party.",
     highlightColor: "red",
-    bannerImage: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=1000&q=80"
+    bannerImage: "/specialsmusic/wingwednesday-optimized.jpg"
   },
   {
     day: "Thursday",
@@ -88,7 +89,8 @@ export const WEEKLY_SPECIALS: WeeklySpecial[] = [
     ],
     entertainment: "DJ Karaoke starting at 8:00 PM — grab the mic and take the spotlight!",
     highlightColor: "purple",
-    bannerImage: "https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=1000&q=80"
+    bannerImage: "/specialsmusic/thirstythursday-optimized.webp",
+    bannerImageFit: "contain"
   },
   {
     day: "Friday",
@@ -129,7 +131,9 @@ export const WEEKLY_SPECIALS: WeeklySpecial[] = [
     priceNote: "Tailgate Atmosphere Indoors with AC & Ice Cold Beer",
     items: [
       { name: "NFL Game Day Burger & Wings Combo", price: "Special", description: "Half-pound burger with fries and 6 crispy wings tossed in your favorite sauce." },
-      { name: "Draft Pitchers & Buckets", price: "Special", description: "Keep your table fueled all 4 quarters with our rotating draft pitchers." }
+      { name: "Draft Pitchers & Buckets", price: "Special", description: "Keep your table fueled all 4 quarters with our rotating draft pitchers." },
+      { name: "Kids Eat Free", price: "Free", description: "One free kids meal with the purchase of a Ribeye or Arrachera Steak." },
+      { name: "Beer Tower", price: "$24", description: "A full tower of ice-cold draft beer to share while you watch the game." }
     ],
     entertainment: "NFL RedZone, 1:00 PM & 4:00 PM matchups, Sunday Night Football on prime big screens.",
     highlightColor: "amber",

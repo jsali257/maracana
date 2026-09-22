@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { MENU_ITEMS, VENUE_INFO } from '../data/venueData';
 import { MenuItem } from '../types';
-import { Utensils, Search, Phone, Camera } from 'lucide-react';
+import { Utensils, Search, Phone, Camera, ShoppingBag } from 'lucide-react';
 
 interface MenuSectionProps {
   onOpenReservation: () => void;
@@ -121,6 +121,16 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onOpenReservation }) =
           <p className="text-stone-700 text-base sm:text-lg font-body">
             Tacos, burgers, steaks, salads, and game-day favorites prepared fresh to order.
           </p>
+          <a
+            id="menu-order-online-btn"
+            href={VENUE_INFO.doordashUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm bg-red-600 hover:bg-red-500 text-white transition-colors shadow-md"
+          >
+            <ShoppingBag className="w-4 h-4" />
+            <span>Order Online for Delivery or Pickup</span>
+          </a>
         </div>
 
         {/* Search & Category Filter Controls */}
