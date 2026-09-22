@@ -29,33 +29,46 @@ export const HoursAndLocation: React.FC<HoursAndLocationProps> = ({ onOpenReserv
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
+
           {/* Left Column: Hours, Address & Contacts */}
           <div className="lg:col-span-6 space-y-6">
-            
+
             {/* Address & Quick Phone Card */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-stone-50 border border-stone-200 space-y-5">
-              <div className="flex items-start justify-between gap-4">
-                <div className="space-y-1">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-amber-800">Sports Bar & Grill</span>
-                  <h3 className="font-display text-3xl font-black uppercase text-stone-900">
-                    {VENUE_INFO.name}
-                  </h3>
-                  <p className="text-sm text-stone-700 font-medium flex items-center gap-1.5 pt-1">
-                    <MapPin className="w-4 h-4 text-stone-500 shrink-0" />
-                    <span>{VENUE_INFO.fullAddress}</span>
-                  </p>
+            <div className="relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-white border border-stone-200 shadow-lg shadow-stone-900/5 space-y-5">
+              <div aria-hidden className="pointer-events-none absolute -right-20 -top-20 w-64 h-64 rounded-full bg-amber-400/10 blur-3xl" />
+
+              <div className="relative flex items-start justify-between gap-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-500 text-stone-950 flex items-center justify-center shrink-0 shadow-lg shadow-amber-500/30 -rotate-3">
+                    <MapPin className="w-6 h-6" />
+                  </div>
+                  <div className="space-y-1">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-amber-700">Sports Bar & Grill</span>
+                    <h3 className="font-display text-3xl font-black uppercase text-stone-900 leading-none">
+                      {VENUE_INFO.name}
+                    </h3>
+                    <p className="text-sm text-stone-600 font-medium pt-1">
+                      {VENUE_INFO.fullAddress}
+                    </p>
+                  </div>
                 </div>
 
                 {/* Status Indicator */}
-                <div className="text-right">
-                  <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${
-                    status.isOpen ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' : 'bg-stone-200 text-stone-700'
-                  }`}>
-                    <span className={`w-2 h-2 rounded-full ${status.isOpen ? 'bg-emerald-600' : 'bg-stone-500'}`} />
-                    <span>{status.isOpen ? 'Open Now' : 'Closed'}</span>
+                <span
+                  className={`hidden sm:inline-flex shrink-0 items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border ${
+                    status.isOpen
+                      ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                      : 'bg-stone-100 text-stone-600 border-stone-200'
+                  }`}
+                >
+                  <span className="relative flex h-2 w-2">
+                    {status.isOpen && (
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
+                    )}
+                    <span className={`relative inline-flex rounded-full h-2 w-2 ${status.isOpen ? 'bg-emerald-500' : 'bg-stone-400'}`} />
                   </span>
-                </div>
+                  <span>{status.isOpen ? 'Open Now' : 'Closed'}</span>
+                </span>
               </div>
 
               {/* Action Buttons */}
@@ -82,13 +95,15 @@ export const HoursAndLocation: React.FC<HoursAndLocationProps> = ({ onOpenReserv
             </div>
 
             {/* Operating Hours Table */}
-            <div className="p-6 sm:p-7 rounded-2xl bg-stone-50 border border-stone-200 space-y-4">
-              <div className="flex items-center justify-between border-b border-stone-200 pb-3">
-                <div className="flex items-center gap-2 text-stone-900 font-display text-xl font-bold uppercase">
-                  <Clock className="w-5 h-5 text-amber-800" />
-                  <span>Hours of Operation</span>
+            <div className="p-6 sm:p-7 rounded-2xl bg-white border border-stone-200 shadow-lg shadow-stone-900/5 space-y-4">
+              <div className="flex items-center justify-between gap-3 border-b border-stone-100 pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-amber-500 text-stone-950 flex items-center justify-center shrink-0">
+                    <Clock className="w-4.5 h-4.5" />
+                  </div>
+                  <span className="text-stone-900 font-display text-xl font-bold uppercase">Hours of Operation</span>
                 </div>
-                <span className="text-xs text-stone-500 font-medium">Hidalgo, TX (CST)</span>
+                <span className="text-[11px] text-stone-400 font-semibold uppercase tracking-wide shrink-0">Hidalgo, TX (CST)</span>
               </div>
 
               <div className="space-y-2 text-xs sm:text-sm">
@@ -97,8 +112,8 @@ export const HoursAndLocation: React.FC<HoursAndLocationProps> = ({ onOpenReserv
                   const isFriSat = schedule.days.includes("Friday");
                   const isSun = schedule.days.includes("Sunday");
                   const currentDay = status.currentDayIndex;
-                  
-                  const isTodayRow = 
+
+                  const isTodayRow =
                     (isMonThu && currentDay >= 1 && currentDay <= 4) ||
                     (isFriSat && (currentDay === 5 || currentDay === 6)) ||
                     (isSun && currentDay === 0);
@@ -106,14 +121,21 @@ export const HoursAndLocation: React.FC<HoursAndLocationProps> = ({ onOpenReserv
                   return (
                     <div
                       key={idx}
-                      className={`flex items-center justify-between p-2.5 rounded-xl transition-colors ${
+                      className={`flex items-center justify-between p-3 rounded-xl transition-colors ${
                         isTodayRow
-                          ? 'bg-amber-100/70 border border-amber-300 text-stone-900 font-bold'
-                          : 'bg-white border border-stone-200 text-stone-700'
+                          ? 'bg-amber-50 border border-amber-200 text-stone-900 font-bold'
+                          : 'bg-stone-50 border border-stone-100 text-stone-600'
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        {isTodayRow && <span className="w-1.5 h-1.5 rounded-full bg-amber-700" />}
+                        {isTodayRow ? (
+                          <span className="relative flex h-1.5 w-1.5 shrink-0">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75" />
+                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-amber-500" />
+                          </span>
+                        ) : (
+                          <span className="w-1.5 h-1.5 shrink-0" />
+                        )}
                         <span>{schedule.days}</span>
                       </div>
                       <span className="font-mono text-stone-900 font-semibold">{schedule.time}</span>
@@ -123,24 +145,28 @@ export const HoursAndLocation: React.FC<HoursAndLocationProps> = ({ onOpenReserv
               </div>
 
               {/* Happy Hour reminder inside hours box */}
-              <div className="mt-4 p-3.5 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-between text-xs">
-                <div className="flex items-center gap-2 text-amber-900 font-semibold">
-                  <Beer className="w-4 h-4 shrink-0 text-amber-700" />
-                  <span>Happy Hour: Monday–Friday | 3:00 PM – 7:00 PM</span>
+              <div className="mt-4 p-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-400 flex flex-wrap items-center justify-between gap-2 text-xs shadow-md shadow-amber-500/20">
+                <div className="flex items-center gap-2 text-stone-950 font-bold">
+                  <Beer className="w-4 h-4 shrink-0" />
+                  <span>Happy Hour: Mon–Fri | 3:00 PM – 7:00 PM</span>
                 </div>
-                <span className="text-amber-900 font-bold">$2.99 Drafts</span>
+                <span className="text-stone-950 font-black">$2.99 Drafts</span>
               </div>
             </div>
 
             {/* Venue Amenities */}
             <div className="grid grid-cols-2 gap-3 text-xs text-stone-700">
-              <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-200 flex items-center gap-2">
-                <Car className="w-4 h-4 text-stone-600" />
-                <span className="font-semibold">Spacious Free Parking</span>
+              <div className="p-4 rounded-xl bg-white border border-stone-200 shadow-sm flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+                  <Car className="w-4.5 h-4.5" />
+                </div>
+                <span className="font-semibold text-stone-800">Spacious Free Parking</span>
               </div>
-              <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-200 flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-stone-600" />
-                <span className="font-semibold">Full Bar & Dining Seating</span>
+              <div className="p-4 rounded-xl bg-white border border-stone-200 shadow-sm flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-4.5 h-4.5" />
+                </div>
+                <span className="font-semibold text-stone-800">Full Bar & Dining Seating</span>
               </div>
             </div>
 
@@ -148,17 +174,19 @@ export const HoursAndLocation: React.FC<HoursAndLocationProps> = ({ onOpenReserv
 
           {/* Right Column: Google Maps & Location Directions */}
           <div className="lg:col-span-6 space-y-4">
-            <div className="rounded-2xl bg-stone-50 border border-stone-200 overflow-hidden shadow-xs">
-              <div className="p-4 bg-white border-b border-stone-200 flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-stone-800">
-                  <Navigation className="w-4 h-4 text-stone-600" />
-                  <span>3110 S. Jackson Rd., Hidalgo, TX</span>
+            <div className="rounded-2xl bg-white border border-stone-200 overflow-hidden shadow-lg shadow-stone-900/5">
+              <div className="p-4 bg-white border-b border-stone-100 flex flex-wrap items-center justify-between gap-2">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-stone-900 text-white flex items-center justify-center shrink-0">
+                    <Navigation className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-stone-800">3110 S. Jackson Rd., Hidalgo, TX</span>
                 </div>
                 <a
                   href={VENUE_INFO.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-amber-800 hover:text-amber-900 font-bold flex items-center gap-1"
+                  className="text-xs text-amber-700 hover:text-amber-800 font-bold flex items-center gap-1"
                 >
                   <span>Open in Google Maps</span>
                   <ExternalLink className="w-3 h-3" />
@@ -177,12 +205,12 @@ export const HoursAndLocation: React.FC<HoursAndLocationProps> = ({ onOpenReserv
               </div>
 
               {/* Map Footer Note */}
-              <div className="p-4 bg-white border-t border-stone-200 flex items-center justify-between text-xs text-stone-600">
+              <div className="p-4 bg-white border-t border-stone-100 flex flex-wrap items-center justify-between gap-2 text-xs text-stone-500">
                 <span>Near McAllen / Pharr / Hidalgo International Bridge area</span>
                 <button
                   id="map-reserve-btn"
                   onClick={onOpenReservation}
-                  className="text-stone-900 hover:text-amber-800 font-bold cursor-pointer"
+                  className="text-stone-900 hover:text-amber-700 font-bold cursor-pointer transition-colors"
                 >
                   Book a Table &rarr;
                 </button>

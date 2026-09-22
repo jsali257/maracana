@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Utensils, Phone, Calendar, Pause, Play, ShoppingBag, MapPin, Flame } from 'lucide-react';
+import { Utensils, Phone, Calendar, Pause, Play, ShoppingBag, MapPin, Flame, Star } from 'lucide-react';
 import { VENUE_INFO } from '../data/venueData';
 import { getVenueStatus } from '../utils/timeHelpers';
 import { MaracanaLogo } from './MaracanaLogo';
@@ -66,6 +66,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenReservation }) => {
         
         {/* Venue status badges */}
         <div className="flex flex-wrap items-center justify-center gap-2.5">
+          {/* Veteran owned badge */}
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-[11px] font-semibold uppercase tracking-widest text-stone-200">
+            <Star className="w-3 h-3 text-amber-400 shrink-0 fill-amber-400" />
+            <span>Veteran Owned</span>
+          </div>
+
           {/* Location chip */}
           <div className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-[11px] font-semibold uppercase tracking-widest text-stone-300">
             <MapPin className="w-3 h-3 text-stone-400 shrink-0" />
