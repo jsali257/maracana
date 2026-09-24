@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { VENUE_INFO } from '../data/venueData';
-import { Phone, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
+import { Phone, MapPin, Clock, Send, CheckCircle2, MessageCircleHeart } from 'lucide-react';
 import { MaracanaLogo } from './MaracanaLogo';
 import { submitVipSignup } from '../lib/actions';
 
@@ -29,22 +29,27 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-stone-900 border-t border-stone-800 text-stone-400 text-sm">
+    <footer className="relative bg-stone-900 border-t border-amber-500/40 text-stone-400 text-sm">
       {/* VIP Club banner */}
       <div className="border-b border-stone-800 bg-stone-950/60 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            <div className="lg:col-span-6 space-y-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-amber-400 block">
-                El Maracaná VIP Text Club
-              </span>
-              <h3 className="font-display text-2xl sm:text-3xl font-black uppercase text-white">
-                Game Day Alerts & Exclusive Kitchen Specials
-              </h3>
-              <p className="text-xs sm:text-sm text-stone-400 font-body">
-                Get updates on UFC fight cards, soccer matchups, live weekend music, and table availability in Hidalgo.
-              </p>
+
+            <div className="lg:col-span-6 flex items-start sm:items-center gap-4">
+              <div className="w-14 h-14 rounded-2xl bg-stone-800 border border-stone-700 text-amber-400 flex items-center justify-center shrink-0">
+                <MessageCircleHeart className="w-6 h-6" />
+              </div>
+              <div className="space-y-2">
+                <span className="text-xs font-bold uppercase tracking-widest text-amber-400 block">
+                  El Maracaná VIP Text Club
+                </span>
+                <h3 className="font-display text-2xl sm:text-3xl font-black uppercase text-white leading-tight">
+                  Game Day Alerts & Exclusive Kitchen Specials
+                </h3>
+                <p className="text-xs sm:text-sm text-stone-400 font-body">
+                  Get updates on UFC fight cards, soccer matchups, live weekend music, and table availability in Hidalgo.
+                </p>
+              </div>
             </div>
 
             <div className="lg:col-span-6">
@@ -135,14 +140,14 @@ export const Footer: React.FC = () => {
             <h4 className="font-display text-base font-bold uppercase text-white tracking-wider">
               Daily Specials
             </h4>
-            <ul className="space-y-1 text-xs">
-              <li><strong className="text-white">Monday:</strong> $7.99 Burgers + MNF</li>
-              <li><strong className="text-white">Tuesday:</strong> $0.99 Street Tacos</li>
-              <li><strong className="text-white">Wednesday:</strong> $0.69 Wings</li>
-              <li><strong className="text-white">Thursday:</strong> 50% Off Apps + DJ Karaoke</li>
-              <li><strong className="text-white">Friday:</strong> Live Banda & Norteño</li>
-              <li><strong className="text-white">Saturday:</strong> Liga MX Matchdays</li>
-              <li><strong className="text-white">Sunday:</strong> NFL RedZone, Kids Eat Free w/ Steak & $24 Beer Towers</li>
+            <ul className="space-y-1.5 text-xs">
+              <li><strong className="text-white font-semibold">Monday:</strong> <span className="text-stone-400">$7.99 Burgers + MNF</span></li>
+              <li><strong className="text-white font-semibold">Tuesday:</strong> <span className="text-stone-400">$0.99 Street Tacos</span></li>
+              <li><strong className="text-white font-semibold">Wednesday:</strong> <span className="text-stone-400">$0.69 Wings</span></li>
+              <li><strong className="text-white font-semibold">Thursday:</strong> <span className="text-stone-400">50% Off Apps + DJ Karaoke</span></li>
+              <li><strong className="text-white font-semibold">Friday:</strong> <span className="text-stone-400">Live Banda & Norteño</span></li>
+              <li><strong className="text-white font-semibold">Saturday:</strong> <span className="text-stone-400">Liga MX Matchdays</span></li>
+              <li><strong className="text-white font-semibold">Sunday:</strong> <span className="text-stone-400">NFL RedZone, Kids Eat Free w/ Steak & $24 Beer Towers</span></li>
             </ul>
           </div>
 
@@ -151,20 +156,26 @@ export const Footer: React.FC = () => {
             <h4 className="font-display text-base font-bold uppercase text-white tracking-wider">
               Location & Hours
             </h4>
-            <div className="space-y-2 text-xs">
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                <span>3110 S. Jackson Rd.<br />Hidalgo, TX 78557</span>
+            <div className="space-y-3 text-xs">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-stone-800 border border-stone-700 text-amber-400 flex items-center justify-center shrink-0">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <span className="pt-1.5">3110 S. Jackson Rd.<br />Hidalgo, TX 78557</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-stone-400 shrink-0" />
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-stone-800 border border-stone-700 text-amber-400 flex items-center justify-center shrink-0">
+                  <Phone className="w-4 h-4" />
+                </div>
                 <a href={`tel:${VENUE_INFO.phoneRaw}`} className="text-white hover:text-amber-400 font-semibold transition-colors">
                   (956) 322-8814
                 </a>
               </div>
-              <div className="flex items-start gap-2 pt-1 border-t border-stone-800">
-                <Clock className="w-4 h-4 text-stone-500 shrink-0 mt-0.5" />
-                <div className="text-stone-400 space-y-0.5">
+              <div className="flex items-start gap-3 pt-2 border-t border-stone-800">
+                <div className="w-8 h-8 rounded-lg bg-stone-800 border border-stone-700 text-amber-400 flex items-center justify-center shrink-0 mt-1">
+                  <Clock className="w-4 h-4" />
+                </div>
+                <div className="text-stone-400 space-y-0.5 pt-1.5">
                   <p>Mon–Thu: 11:00 AM – 12:00 AM</p>
                   <p>Fri–Sat: 11:00 AM – 2:00 AM</p>
                   <p>Sunday: 11:00 AM – 12:00 AM</p>
