@@ -14,7 +14,7 @@ import { Footer } from './components/Footer';
 import { BackToTop } from './components/BackToTop';
 import { EventItem } from './types';
 import { BookingPrefill } from './components/Hero';
-import { Phone, Calendar, MapPin } from 'lucide-react';
+import { Phone, MapPin } from 'lucide-react';
 import { VENUE_INFO } from './data/venueData';
 
 export default function App() {
@@ -22,18 +22,11 @@ export default function App() {
   const [prefilledEvent, setPrefilledEvent] = useState<EventItem | null>(null);
   const [prefilledBookingDetails, setPrefilledBookingDetails] = useState<BookingPrefill | null>(null);
 
-  const handleOpenReservation = (eventOrDetails?: EventItem | BookingPrefill | null) => {
-    if (eventOrDetails && 'category' in eventOrDetails) {
-      setPrefilledEvent(eventOrDetails as EventItem);
-      setPrefilledBookingDetails(null);
-    } else if (eventOrDetails) {
-      setPrefilledBookingDetails(eventOrDetails as BookingPrefill);
-      setPrefilledEvent(null);
-    } else {
-      setPrefilledEvent(null);
-      setPrefilledBookingDetails(null);
-    }
-    setIsReservationOpen(true);
+  // The online reservation form is on hold for now — every "Reserve" CTA site-wide
+  // dials the venue directly instead. The form/modal below is kept wired up and
+  // untouched so it can be switched back on later (just restore the body below).
+  const handleOpenReservation = (_eventOrDetails?: EventItem | BookingPrefill | null) => {
+    window.location.href = `tel:${VENUE_INFO.phoneRaw}`;
   };
 
   const handleCloseReservation = () => {
@@ -135,7 +128,7 @@ export default function App() {
           onClick={() => handleOpenReservation()}
           className="flex-1 py-2 rounded-xl text-xs font-bold bg-amber-500 text-stone-950 flex items-center justify-center gap-1.5 shadow-xs cursor-pointer"
         >
-          <Calendar className="w-3.5 h-3.5" />
+          <Phone className="w-3.5 h-3.5" />
           <span>Reserve</span>
         </button>
       </div>

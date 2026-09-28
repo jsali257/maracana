@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Utensils, Phone, Calendar, Pause, Play, ShoppingBag, MapPin, Flame, Star } from 'lucide-react';
+import { Utensils, Phone, Pause, Play, ShoppingBag, MapPin, Flame, Star } from 'lucide-react';
 import { VENUE_INFO } from '../data/venueData';
 import { getVenueStatus } from '../utils/timeHelpers';
 import { MaracanaLogo } from './MaracanaLogo';
@@ -133,8 +133,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenReservation }) => {
             onClick={() => onOpenReservation()}
             className="px-7 py-3.5 rounded-xl font-bold text-sm sm:text-base bg-amber-500 hover:bg-amber-400 text-stone-950 transition-colors shadow-md flex items-center gap-2 cursor-pointer active:scale-95"
           >
-            <Calendar className="w-4 h-4" />
-            <span>Reserve a Table</span>
+            <Phone className="w-4 h-4" />
+            <span>Call to Reserve</span>
           </button>
 
           <a

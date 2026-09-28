@@ -213,7 +213,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onOpenReservation }) =
               onClick={onOpenReservation}
               className="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-stone-900 hover:bg-stone-800 text-white cursor-pointer transition-colors"
             >
-              Reserve Table
+              Call to Reserve
             </button>
             <a
               id="menu-call-orders-btn"

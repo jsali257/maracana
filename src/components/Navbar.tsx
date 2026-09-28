@@ -121,7 +121,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenReservation }) => {
               onClick={onOpenReservation}
               className="px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-400 text-stone-950 transition-all cursor-pointer shadow-xs active:scale-95"
             >
-              Reserve Table
+              Call to Reserve
             </button>
             <a
               id="nav-call-btn"
@@ -138,9 +138,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenReservation }) => {
             <button
               id="nav-mobile-reserve-btn"
               onClick={onOpenReservation}
-              className="px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-stone-950"
+              className="px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-stone-950 flex items-center gap-1.5"
             >
-              Reserve
+              <Phone className="w-3.5 h-3.5" />
+              <span>Reserve</span>
             </button>
             <button
               id="mobile-menu-toggle-btn"
@@ -185,7 +186,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenReservation }) => {
                 }}
                 className="w-full py-3 rounded-xl text-center font-bold text-sm bg-amber-500 text-stone-950"
               >
-                Reserve a Table
+                Call to Reserve
               </button>
               <a
                 href={`tel:${VENUE_INFO.phoneRaw}`}

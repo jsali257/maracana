@@ -212,7 +212,7 @@ export const HoursAndLocation: React.FC<HoursAndLocationProps> = ({ onOpenReserv
                   onClick={onOpenReservation}
                   className="text-stone-900 hover:text-amber-700 font-bold cursor-pointer transition-colors"
                 >
-                  Book a Table &rarr;
+                  Call to Reserve: {VENUE_INFO.phone} &rarr;
                 </button>
               </div>
             </div>
