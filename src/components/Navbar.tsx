@@ -31,11 +31,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenReservation }) => {
   }, []);
 
   const navLinks = [
-    { name: "Specials", href: "#specials", icon: Flame, badge: "Daily Deals" },
-    { name: "Food & Drinks", href: "#menu", icon: Utensils },
-    { name: "Live Sports", href: "#sports", icon: Tv },
-    { name: "Gallery", href: "#gallery", icon: Image },
-    { name: "Hours & Location", href: "#location", icon: MapPin },
+    { name: "Specials", href: "/#specials", icon: Flame, badge: "Daily Deals" },
+    { name: "Food & Drinks", href: "/#menu", icon: Utensils },
+    { name: "Live Sports", href: "/#sports", icon: Tv },
+    { name: "Gallery", href: "/#gallery", icon: Image },
+    { name: "Hours & Location", href: "/#location", icon: MapPin },
   ];
 
   return (
@@ -79,7 +79,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenReservation }) => {
       <nav className={`transition-all duration-300 ${scrolled ? 'bg-stone-950/95 shadow-lg border-b border-stone-800 backdrop-blur-md py-3' : 'bg-gradient-to-b from-stone-950/95 via-stone-950/80 to-transparent py-4'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
           {/* Brand Logo */}
-          <a href="#" className="flex items-center gap-2 sm:gap-3 group min-w-0">
+          <a href="/" className="flex items-center gap-2 sm:gap-3 group min-w-0">
             <MaracanaLogo className="w-9 h-9 sm:w-10 sm:h-10 shrink-0 transition-transform group-hover:scale-105" />
             <div className="min-w-0">
               <div className="flex items-center gap-2">

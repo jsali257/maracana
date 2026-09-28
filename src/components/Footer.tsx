@@ -127,11 +127,11 @@ export const Footer: React.FC = () => {
               Navigation
             </h4>
             <ul className="space-y-1.5 text-xs">
-              <li><a href="#specials" className="hover:text-amber-400 transition-colors">Daily Specials</a></li>
-              <li><a href="#menu" className="hover:text-amber-400 transition-colors">Food & Drink Menu</a></li>
-              <li><a href="#sports" className="hover:text-amber-400 transition-colors">Sports We Broadcast</a></li>
-              <li><a href="#gallery" className="hover:text-amber-400 transition-colors">Photo Gallery</a></li>
-              <li><a href="#location" className="hover:text-amber-400 transition-colors">Hours & Directions</a></li>
+              <li><a href="/#specials" className="hover:text-amber-400 transition-colors">Daily Specials</a></li>
+              <li><a href="/menu" className="hover:text-amber-400 transition-colors">Food & Drink Menu</a></li>
+              <li><a href="/#sports" className="hover:text-amber-400 transition-colors">Sports We Broadcast</a></li>
+              <li><a href="/#gallery" className="hover:text-amber-400 transition-colors">Photo Gallery</a></li>
+              <li><a href="/#location" className="hover:text-amber-400 transition-colors">Hours & Directions</a></li>
             </ul>
           </div>
 
