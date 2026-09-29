@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { MENU_ITEMS, VENUE_INFO } from '../data/venueData';
 import { MenuItem } from '../types';
-import { Utensils, Search, Phone, Camera, ShoppingBag } from 'lucide-react';
+import { Utensils, Search, Phone, Camera, ShoppingBag, ArrowRight, ArrowDown } from 'lucide-react';
 
 interface MenuSectionProps {
   onOpenReservation: () => void;
@@ -131,6 +131,52 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ onOpenReservation }) =
             <ShoppingBag className="w-4 h-4" />
             <span>Order Online for Delivery or Pickup</span>
           </a>
+
+          {/* Carryout Instructions */}
+          <div className="relative overflow-hidden w-full max-w-2xl mx-auto mt-4 p-5 sm:p-7 rounded-2xl bg-gradient-to-br from-stone-50 to-white border border-stone-200 text-left">
+            <div aria-hidden className="pointer-events-none absolute -right-16 -top-16 w-56 h-56 rounded-full bg-red-500/5 blur-3xl" />
+
+            <span className="relative block text-[11px] font-bold uppercase tracking-widest text-stone-400 mb-4">
+              Carryout in Two Steps
+            </span>
+
+            <div className="relative flex flex-col sm:flex-row items-stretch gap-4 sm:gap-3">
+              <div className="flex-1">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-8 h-8 rounded-full bg-red-600 text-white font-display font-black text-sm flex items-center justify-center shrink-0 shadow-md shadow-red-600/30">
+                    1
+                  </span>
+                  <Phone className="w-4 h-4 text-red-600 shrink-0" />
+                  <span className="text-sm font-bold text-stone-900">Call &amp; Pull Up</span>
+                </div>
+                <p className="text-xs text-stone-600 mt-2">
+                  Park out front and call{' '}
+                  <a href={`tel:${VENUE_INFO.phoneRaw}`} className="font-semibold text-amber-800 hover:text-amber-900">
+                    {VENUE_INFO.phone}
+                  </a>{' '}
+                  — we&apos;ll take your order over the phone.
+                </p>
+              </div>
+
+              <div className="flex items-center justify-center shrink-0 text-stone-300">
+                <ArrowRight className="hidden sm:block w-5 h-5" />
+                <ArrowDown className="sm:hidden w-5 h-5" />
+              </div>
+
+              <div className="flex-1">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-8 h-8 rounded-full bg-red-600 text-white font-display font-black text-sm flex items-center justify-center shrink-0 shadow-md shadow-red-600/30">
+                    2
+                  </span>
+                  <ShoppingBag className="w-4 h-4 text-red-600 shrink-0" />
+                  <span className="text-sm font-bold text-stone-900">Order Online</span>
+                </div>
+                <p className="text-xs text-stone-600 mt-2">
+                  Place your pickup order online, then come inside to grab it.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Search & Category Filter Controls */}
